@@ -2,6 +2,11 @@
 
 Documentatie van het opsplitsen van [nextcloud/calendar#7996](https://github.com/nextcloud/calendar/pull/7996) in twee gerichte, reviewbare PR's, en de status na indiening.
 
+> **Niet publiceren:** dit stuk staat in `internal/` en wordt daarom niet
+> meegesynct naar de publieke docs op voxcloud.nl. Het beschrijft het proces
+> rond een nog lopende PR bij nextcloud/calendar, niet het gebruik van RoomVox.
+> Stond eerder als `architecture/calendar-pr-splitsing.nl.md` wél publiek.
+>
 > **Herkomst:** dit document stond ongecommit in `NC-MS365-calendar`, een repo
 > die per 23-08-2026 is opgegaan in ViaVox. De rest van die code zit in ViaVox,
 > maar dit stuk niet — het beschrijft werk in `calendar-pr` (fork van
