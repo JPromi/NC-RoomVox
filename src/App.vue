@@ -29,6 +29,7 @@
                 @click="onTabClick('locations')">
                 <MapMarker :size="16" />
                 {{ t('roomvox', 'Locations') }}
+                <NcCounterBubble v-if="locations.length > 0" :count="locations.length" />
             </button>
             <button
                 :class="['tab-button', { active: isTabActive('bookings') }]"
