@@ -486,15 +486,47 @@ class RoomApiController extends Controller {
     public function searchSharees(): JSONResponse {
         $search = $this->request->getParam('search', '');
         $results = [];
+        $seen = [];
 
         // Search groups only
         $groups = $this->groupManager->search($search, 25);
         foreach ($groups as $group) {
+            $gid = $group->getGID();
+            $seen[$gid] = true;
             $results[] = [
                 'type' => 'group',
-                'id' => $group->getGID(),
+                'id' => $gid,
                 'label' => $group->getDisplayName(),
             ];
+        }
+
+        // Exact group-ID fallback, mirroring Nextcloud's own sharee search
+        // (OC\Collaboration\Collaborators\GroupPlugin). Backends are free to
+        // match search terms against a display attribute rather than the
+        // Nextcloud group ID — user_ldap searches the LDAP group display name
+        // attribute — so a group whose ID differs from that attribute is
+        // invisible to search() while get() still resolves it.
+        if ($search !== '' && !isset($seen[$search])) {
+            $exact = $this->groupManager->get($search);
+            if ($exact !== null) {
+                $results[] = [
+                    'type' => 'group',
+                    'id' => $exact->getGID(),
+                    'label' => $exact->getDisplayName(),
+                ];
+            }
+        }
+
+        // A search that finds nothing at all is the symptom an admin sees when
+        // a group backend is registered but inactive: user_ldap only enables
+        // its group backend when both the group filter and the group-member
+        // association attribute are configured, and returns an empty list
+        // without logging anything. Leave a trace so that is diagnosable.
+        if ($results === [] && $search !== '') {
+            $this->logger->debug(
+                'RoomVox group search returned no results for "{search}". If groups from an external backend (e.g. LDAP) are expected, verify that the backend is active and that its group filter and group-member association attribute are configured.',
+                ['search' => $search, 'app' => 'roomvox'],
+            );
         }
 
         return new JSONResponse($results);
