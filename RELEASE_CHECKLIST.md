@@ -336,7 +336,7 @@ Consequences while this is open — none of these block a release:
 
 - [ ] Check `appinfo/info.xml`:
   ```
-  <nextcloud min-version="32" max-version="34"/>
+  <nextcloud min-version="32" max-version="35"/>
   <php min-version="8.2"/>
   ```
 - [ ] Test on target Nextcloud version(s)

@@ -47,17 +47,15 @@
 			</div>
 		</div>
 
-		<!-- Section 3: Pricing CTA -->
+		<!-- Section 3: Where subscriptions come from -->
 		<div class="settings-section">
 			<div class="cta-block">
-				<NcButton type="primary"
-					:href="pricingUrl"
-					target="_blank"
-					rel="noopener noreferrer">
-					{{ t('roomvox', 'Pricing details') }}
-				</NcButton>
+				<p class="cta-sales">
+					{{ t('roomvox', 'Subscriptions are sold through Nextcloud. Contact your Nextcloud account manager, or') }}
+					<a href="mailto:sales@nextcloud.com">sales@nextcloud.com</a>
+				</p>
 				<p class="cta-contact">
-					{{ t('roomvox', 'Questions?') }}
+					{{ t('roomvox', 'Questions about the app itself?') }}
 					<a href="mailto:info@voxcloud.nl">info@voxcloud.nl</a>
 				</p>
 			</div>
@@ -165,10 +163,6 @@
 		<div class="settings-section">
 			<div class="contact-info-block">
 				<p>
-					{{ t('roomvox', 'Learn more about RoomVox') }}:
-					<a href="https://voxcloud.nl" target="_blank" rel="noopener noreferrer">voxcloud.nl</a>
-				</p>
-				<p>
 					{{ t('roomvox', 'Questions or feedback?') }}
 					<a href="mailto:info@voxcloud.nl">info@voxcloud.nl</a>
 				</p>
@@ -222,30 +216,6 @@ export default {
 		 */
 		subscriptionNudge() {
 			return buildSubscriptionNudge(this.licenseStats)
-		},
-
-		/**
-		 * Where the price actually lives.
-		 *
-		 * Deliberately not the App Store: it has no price field at all — the API
-		 * exposes versions, licences and ratings, nothing commercial — so linking
-		 * there for pricing would move the reader further from the answer.
-		 * Collabora and OnlyOffice point at their own sites for the same reason.
-		 *
-		 * This is the information page, not the purchase route. Subscriptions are
-		 * sold through Nextcloud, which is what the subscription notice says; the
-		 * label says "details" so the two do not read as competing offers. There
-		 * is deliberately no second button to the App Store listing either: it
-		 * tells an administrator nothing they cannot see from inside their own
-		 * server.
-		 *
-		 * Intended to move to a Nextcloud-hosted page once one exists. Not linked
-		 * speculatively: a URL that 404s would ship in a release that sits on the
-		 * App Store for months.
-		 */
-		pricingUrl() {
-			const lang = (window.document?.documentElement?.lang || '').split('-')[0]
-			return lang === 'nl' ? 'https://voxcloud.nl/pricing/#roomvox' : 'https://voxcloud.nl/en/pricing/#roomvox'
 		},
 
 	},
@@ -440,12 +410,17 @@ export default {
 	color: var(--color-text-maxcontrast);
 }
 
-/* CTA block (View pricing button + contact email) */
+/* CTA block: where subscriptions come from, then app contact.
+   Stacked rather than a row — both lines are prose now that the pricing
+   button is gone, and the sales line leads. */
 .cta-block {
 	display: flex;
-	align-items: center;
-	gap: 16px;
-	flex-wrap: wrap;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.cta-sales {
+	margin: 0;
 }
 
 .cta-contact {
@@ -454,11 +429,13 @@ export default {
 	margin: 0;
 }
 
+.cta-sales a,
 .cta-contact a {
 	color: var(--color-primary);
 	text-decoration: none;
 }
 
+.cta-sales a:hover,
 .cta-contact a:hover {
 	text-decoration: underline;
 }

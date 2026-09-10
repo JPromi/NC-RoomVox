@@ -51,7 +51,7 @@ No separate booking portal needed. Rooms appear directly in the calendar app you
     <screenshot>https://raw.githubusercontent.com/nextcloud/roomvox/main/screenshots/import-rooms.png</screenshot>
     <screenshot>https://raw.githubusercontent.com/nextcloud/roomvox/main/screenshots/confirmation-email.png</screenshot>
     <dependencies>
-        <nextcloud min-version="32" max-version="34"/>
+        <nextcloud min-version="32" max-version="35"/>
         <php min-version="8.2"/>
     </dependencies>
     <types>

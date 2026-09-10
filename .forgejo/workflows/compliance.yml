@@ -21,6 +21,9 @@ jobs:
         include:
           - { nc: '32', php: '8.2' }
           - { nc: '33', php: '8.3' }
+          - { nc: '34', php: '8.3' }
+          # NC35 requires PHP >= 8.3 (lib/versioncheck.php) and rejects >= 8.6.
+          - { nc: '35', php: '8.4' }
 
     steps:
       - uses: actions/checkout@v4
