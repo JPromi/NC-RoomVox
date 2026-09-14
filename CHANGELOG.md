@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-09-14 - Nextcloud 35 support, LDAP group search & buildable from a clean clone
+
 ### Added
 
 - **Nextcloud 35 support** — `info.xml` now declares `<nextcloud min-version="32" max-version="35"/>`. Verified against a running Nextcloud 35.0.0 RC3 on PHP 8.5.9 rather than inferred from release notes: all 50 `OCP\` symbols the app imports resolve, all 44 classes load without a fatal and none turned abstract, the app installs and enables, `/status.php` and `/login` both stay 200, the log stays free of RoomVox entries, and the CalDAV room backend registers and publishes room metadata as before. No code changes were required — the declared ceiling was the only thing preventing installation. Nextcloud 35 retypes `IBootContext::getServerContainer()` to `Psr\Container\ContainerInterface`, which RoomVox is unaffected by because it only ever calls `->get()` on it. Four APIs the app uses became or remain deprecated without being removed (`ISecureRandom::generate`, `ICountUsersBackend`, `IConfig::getAppValue` and friends, `Calendar\Room\IManager::getBackends`); replacing them is cleanup for a later release, and two of the replacements do not exist on Nextcloud 32, which is still supported. The audit is written up in [NC 35 Compatibility](docs/architecture/nc35-compatibility.md).
