@@ -35,7 +35,7 @@ Some tests exercise private methods via `ReflectionMethod` on purpose — core b
 
 CI runs on Forgejo from `.forgejo/workflows/`:
 - `tests.yml` — phpunit on a PHP 8.2+8.3 matrix, `npm run build`, and a check-only l10n guard (`scripts/check-l10n-sync.js`) that backstops the prebuild hook.
-- `compliance.yml` — reseller compliance matrix (NC 32/33), reporting PHPStan/Psalm/PHPCS/PHPUnit to the compliance dashboard.
+- `compliance.yml` — reseller compliance matrix (NC 32/33/34/35), reporting PHPStan/Psalm/PHPCS/PHPUnit to the compliance dashboard.
 - `notify-website.yml` — redeploys voxcloud.nl/docs when `docs/` or the README changes.
 
 ## Architecture
