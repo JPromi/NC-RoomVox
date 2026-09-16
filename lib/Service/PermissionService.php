@@ -332,6 +332,16 @@ class PermissionService {
                     foreach ($group->getUsers() as $user) {
                         $userIds[] = $user->getUID();
                     }
+                } else {
+                    // A configured group that no backend resolves. Typically an
+                    // external backend (LDAP) that is unreachable or no longer
+                    // active: canManage() keeps working through isInGroup(),
+                    // but manager notifications would silently reach nobody.
+                    $this->logger->warning(
+                        "Permission group '{$id}' could not be resolved by any group backend; "
+                        . 'its members will not receive notifications. If this is an LDAP group, '
+                        . 'check that the LDAP backend is active and reachable.',
+                    );
                 }
             }
         }

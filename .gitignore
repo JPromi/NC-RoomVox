@@ -6,8 +6,6 @@ js/
 *.swp
 *.swo
 .DS_Store
-package-lock.json
-composer.lock
 seed-rooms.sh
 seed-bookings.sh
 *.key

@@ -303,7 +303,6 @@ OC.L10N.register(
         "e.g. RVOX-XXXX-XXXX-XXXX-XXXX" : "ex. RVOX-XXXX-XXXX-XXXX-XXXX",
         "Save & activate" : "Enregistrer et activer",
         "Remove subscription key" : "Supprimer la clé d'abonnement",
-        "Learn more about RoomVox" : "En savoir plus sur RoomVox",
         "Questions or feedback?" : "Questions ou commentaires ?",
         "Please enter a subscription key" : "Veuillez saisir une clé d'abonnement",
         "Failed to save subscription key" : "Échec de l'enregistrement de la clé d'abonnement",

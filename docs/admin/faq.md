@@ -101,7 +101,7 @@ Set a real email on the room (e.g., `boardroom@company.com`) to change this.
 
 ### What Nextcloud versions are supported?
 
-Currently NC 32–33 (per `appinfo/info.xml`). NC 34 is fully tested and compatible — the `max-version` bump to 34 is planned for v1.2.0. See [NC 34 Compatibility](../architecture/nc34-compatibility.md).
+NC 32 through 35 (per `appinfo/info.xml`). See [NC 34 Compatibility](../architecture/nc34-compatibility.md) and [NC 35 Compatibility](../architecture/nc35-compatibility.md) for the audits behind those version ranges.
 
 ### Are there breaking changes I should know about?
 
